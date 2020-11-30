@@ -1,0 +1,23 @@
+
+homeassistant:
+  packages: !include_dir_named packages
+
+default_config:
+
+logger:
+  default: info
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+input_boolean: 
+  guests:
+    name: Guests
+    icon: mdi:account-multiple
+    initial: off
+  presence:
+    name: Presence
+    icon: mdi:tools
+    initial: off

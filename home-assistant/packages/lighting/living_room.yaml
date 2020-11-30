@@ -1,0 +1,91 @@
+input_select:
+  living_room_lights:
+    options:
+    - 'off'
+    - morning
+    - evening
+    - late_evening
+    - bedtime
+    - movie
+
+input_boolean:
+  movie_time:
+    name: Movie time
+    initial: off
+
+automation:
+- alias: "[Living room] Pass on lights mode"
+  variables:
+    map:
+      off: 'off'
+      morning: morning
+      day: 'off'
+      evening: evening
+      bedtime: bedtime
+      night: 'off'
+  trigger:
+    platform: state
+    entity_id: input_select.lights_mode
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.living_room_lights
+      option: "{{ map[states('input_select.lights_mode')] }}"
+
+- alias: "[Living room] Activate late evening lights @ 21:30"
+  trigger:
+    platform: time
+    at: '21:30:00'
+  condition:
+    condition: state
+    entity_id: input_select.living_room_lights
+    state:
+      - evening
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.living_room_lights
+      option: late_evening
+
+- alias: "[Living room] Activate movie scene"
+  trigger:
+    platform: state
+    entity_id: input_boolean.movie_time
+    to: 'on'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.living_room_lights
+      option: movie
+
+- alias: "[Living room] Deactivate movie scene"
+  trigger:
+    platform: state
+    entity_id: input_boolean.movie_time
+    to: 'off'
+  action:
+  - choose:
+    - conditions:
+      - condition: time
+        after: '21:30:00'
+        before: '03:00:00'
+      sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.living_room_lights
+          option: late_evening
+    default:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.living_room_lights
+        option: evening
+
+- alias: "[Living room] Activate scene"
+  trigger:
+    platform: state
+    entity_id: input_select.living_room_lights
+  action:
+  - service: scene.turn_on
+    data:
+      entity_id: "{{ 'scene.living_room_' ~ states('input_select.living_room_lights') }}"
+      transition: 30

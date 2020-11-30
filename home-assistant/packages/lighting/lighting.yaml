@@ -1,0 +1,99 @@
+input_select:
+  lights_mode:
+    name: Lights mode
+    options:
+      - 'off'
+      - morning
+      - day
+      - evening
+      - bedtime
+      - night
+
+sensor:
+- platform: template
+  sensors:
+    sun_elevation:
+      friendly_name: "Sun Elevation"
+      unit_of_measurement: "°"
+      value_template: "{{ state_attr('sun.sun','elevation') }}"      
+
+automation:
+
+- alias: Start morning routine when presence detected in hallway
+  trigger:
+    platform: time
+    at: '06:00:00'
+  condition:
+    condition: time
+    weekday: [ mon, tue, wed, thu, fri ]
+  action:
+  - wait_for_trigger:
+    - platform: state
+      entity_id: binary_sensor.hallway_motion_sensor
+      to: 'on'
+    timeout: '02:00:00'
+    continue_on_timeout: false
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lights_mode
+      option: 'morning'
+
+- alias: "Set lights_mode = evening when sun goes below 6 degrees"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.sun_elevation
+    below: 6
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lights_mode
+      option: 'evening'
+
+- alias: "Lights mode automation"
+  variables:
+    settings:
+      morning:        
+        hallway_light:          [  25, 2200 ]
+        wardrobe_light:         [   0, 2200 ]
+        bedroom_light:          [  10, 2200 ]
+
+      evening:
+        hallway_light:          [  25, 2200 ]
+        wardrobe_light:         [   0, 2200 ]
+        bedroom_light:          [  25, 2200 ]
+                      
+      bedtime:
+        hallway_light:          [ 100, 2200 ]
+        wardrobe_light:         [ 100, 2200 ]
+        bedroom_light:          [ 100, 2200 ]
+
+      night:
+        hallway_light:          [   0, 2200 ]
+        wardrobe_light:         [   0, 2200 ]
+        bedroom_light:          [   0, 2200, 300 ]
+  
+  trigger:
+    platform: state
+    entity_id: input_select.lights_mode
+  condition:
+    - "{{ states('input_select.lights_mode') in settings }}"
+  action:
+    repeat:
+      while: "{{ repeat.index <= settings[ states('input_select.lights_mode') ] | length }}"
+      sequence:
+      - variables:          
+          lights_mode: "{{ states('input_select.lights_mode') }}"
+          entity_id: "{{ ( settings[ lights_mode ].keys()|list )[ repeat.index - 1] }}"
+          brightness_pct: "{{ ( settings[ lights_mode ].values()|list )[ repeat.index - 1][0] }}"
+          kelvin: "{{ ( settings[ lights_mode ].values()|list )[ repeat.index - 1][1] or 2700 }}"
+          transition: "{{ ( settings[ lights_mode ].values()|list )[ repeat.index - 1][2] or 15 }}"
+      - service: light.turn_on
+        data:
+          entity_id: "{{ 'light.' ~ entity_id }}"
+          brightness_pct: "{{ brightness_pct }}"
+          kelvin: "{{ kelvin }}"
+          transition: "{{ transition }}"
+      # - service: system_log.write  
+      #   data:
+      #     message: "Setting light OFF to {{ transition }}"
+      #     level: info

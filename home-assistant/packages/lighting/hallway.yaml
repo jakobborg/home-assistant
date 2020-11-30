@@ -1,0 +1,137 @@
+automation:
+  
+  # Turn on lights when presence detected and lights_mode in (morning, evening, night)
+
+  - alias: Turn on hallway light when presence detected.
+    trigger:
+      platform: state
+      entity_id: binary_sensor.hallway_motion_sensor
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: input_select.lights_mode
+      state: 
+        - 'morning'
+        - 'evening'
+        - 'night'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.hallway_light
+          kelvin: >
+            {% if is_state("input_select.lights_mode", "night") %}
+              2200
+            {% else %}
+              2700
+            {% endif %}
+          brightness_pct: >
+            {% if is_state("input_select.lights_mode", "night") %}
+              10
+            {% else %}
+              100
+            {% endif %}
+          transition: 1
+      - service: timer.cancel
+        data:
+          entity_id: timer.hallway
+  
+  # Start timer when presence not detected and lights_mode in (morning, evening, night)
+
+  - alias: Start hallway timer when presence no longer detected.
+    trigger:
+      platform: state
+      entity_id: binary_sensor.hallway_motion_sensor
+      to: 'off'
+    condition:
+      condition: state
+      entity_id: input_select.lights_mode
+      state: 
+        - 'morning'
+        - 'evening'
+        - 'night'
+    action:
+      - service: timer.start
+        data:
+          entity_id: timer.hallway
+  
+  # Turn off lights when timer finishes.
+
+  - alias: Dim or turn off hallway light once timer finishes.
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.hallway
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.hallway_light
+          kelvin: 2200
+          brightness_pct: >
+            {% if is_state("input_select.lights_mode", "night") %}
+              {% if is_state("input_boolean.guests", "on") %}
+                5
+              {% else %}
+                0
+              {% endif %}
+            {% else %}
+              20
+            {% endif %}
+          transition: 15      
+
+  - alias: Stop timer when lights mode changes.
+    trigger:
+      platform: state
+      entity_id: input_select.lights_mode
+      to:
+        - "off"
+        - "day"
+    action:
+      - service: timer.cancel
+        data:
+          entity_id: timer.hallway
+  
+  # Lights_mode = bedtime.
+
+  - alias: Turn on hallway light when lights mode changes to bedtime.
+    trigger:
+      platform: state
+      entity_id: input_select.lights_mode
+      to: 'bedtime'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.hallway_light
+          kelvin: 2200
+          brightness_pct: 100
+          transition: 15   
+      - service: timer.cancel
+        data:
+          entity_id: timer.hallway
+
+  # Lights_mode = night.
+
+  - alias: Turn off hallway light when lights mode changes to night.
+    trigger:
+      platform: state
+      entity_id: input_select.lights_mode
+      to: "night"
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.hallway_light
+          kelvin: 2200
+          brightness_pct: >
+            {% if is_state("input_boolean.guests", "night") %}
+              5
+            {% else %}
+              0
+            {% endif %}
+          transition: 15   
+      - service: timer.cancel
+        data:
+          entity_id: timer.hallway
+
+timer:
+  hallway:
+    duration: '00:02:00'

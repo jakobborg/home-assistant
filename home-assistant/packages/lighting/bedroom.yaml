@@ -1,0 +1,39 @@
+input_select:
+  bedroom_lights:
+    options:
+    - 'off'
+    - dimmed
+    - 'on'
+
+automation:
+- alias: "[Bedroom] Activate bedtime lights"
+  variables:
+    map:
+      off: 'off'
+      morning: dimmed
+      day: 'off'
+      evening: dimmed
+      bedtime: 'on'
+      night: 'off'
+  trigger:
+    platform: state
+    entity_id: input_select.lights_mode
+    option: 'bedtime'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.bedroom_lights
+      option: "{{ map[states('input_select.lights_mode')] }}"
+
+- alias: "[Guest room] Activate scene"
+  variables:
+    transitions:
+      'off': 240
+  trigger:
+    platform: state
+    entity_id: input_select.bedroom_lights
+  action:
+  - service: scene.turn_on
+    data:
+      entity_id: "{{ 'scene.bedroom_' ~ states('input_select.bedroom_lights') }}"
+      transition: "{{ transitions[ states('input_select.bedroom_lights') ] or 15 }}"

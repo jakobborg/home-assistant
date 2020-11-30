@@ -1,0 +1,71 @@
+input_boolean:
+  home_occupancy:
+    name: Home occupied?
+    initial: on
+
+automation:
+
+- alias: Set home occupancy to on when presence detected in entrance.
+  trigger:
+    platform: state
+    entity_id: binary_sensor.entrance_motion_sensor
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.home_occupancy
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.home_occupancy
+
+- alias: Set home occupancy to off when everone left
+  trigger:
+    platform: state
+    entity_id: group.everyone
+    to: 'not_home'
+    for:
+      minutes: 5
+  condition:
+  - condition: state
+    entity_id: input_boolean.home_occupancy
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.senja_home
+    state: 'off'
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.home_occupancy
+
+- alias: Set home occupancy to on when someone comes home
+  trigger:
+    platform: state
+    entity_id: group.everyone
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: input_boolean.home_occupancy
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.home_occupancy
+
+sensor:
+- platform: template
+  sensors:
+    home_occupancy:
+      friendly_name: Home occupied?
+      icon_template: >-
+        {% if is_state('input_boolean.home_occupancy','on') %}
+          mdi:home-account
+        {% else %}
+          mdi:home-outline
+        {% endif %}
+      value_template: >-
+        {% if is_state('input_boolean.home_occupancy', 'on') %}
+          on
+        {% else %}
+          off
+        {% endif %}

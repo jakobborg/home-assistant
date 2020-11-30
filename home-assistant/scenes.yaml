@@ -1,0 +1,316 @@
+- id: '1606570687046'
+  name: living_room_morning
+  entities:
+    light.kitchen_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 191
+      color_temp: 375
+      friendly_name: Kitchen light
+      supported_features: 43
+      state: 'on'
+    light.floor_lamp_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 191
+      color_temp: 400
+      friendly_name: Floor lamp light
+      supported_features: 43
+      state: 'on'
+    light.planet_s:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 217
+      color_temp: 375
+      friendly_name: Planet S
+      supported_features: 43
+      state: 'on'
+    light.planet_m:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 217
+      color_temp: 375
+      friendly_name: Planet M
+      supported_features: 43
+      state: 'on'
+    light.planet_l:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 255
+      color_temp: 454
+      friendly_name: Planet L
+      supported_features: 43
+      state: 'on'
+- id: '1606572076120'
+  name: living_room_evening
+  entities:
+    light.kitchen_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 375
+      friendly_name: Kitchen light
+      supported_features: 43
+      state: 'on'
+    light.floor_lamp_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 370
+      friendly_name: Floor lamp light
+      supported_features: 43
+      state: 'on'
+    light.planet_s:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 217
+      color_temp: 375
+      friendly_name: Planet S
+      supported_features: 43
+      state: 'on'
+    light.planet_m:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 217
+      color_temp: 375
+      friendly_name: Planet M
+      supported_features: 43
+      state: 'on'
+    light.planet_l:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 255
+      color_temp: 454
+      friendly_name: Planet L
+      supported_features: 43
+      state: 'on'
+- id: '1606572457026'
+  name: living_room_late_evening
+  entities:
+    light.planet_s:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 191
+      color_temp: 375
+      friendly_name: Planet S
+      supported_features: 43
+      state: 'on'
+    light.planet_m:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 178
+      color_temp: 375
+      friendly_name: Planet M
+      supported_features: 43
+      state: 'on'
+    light.planet_l:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 217
+      color_temp: 454
+      friendly_name: Planet L
+      supported_features: 43
+      state: 'on'
+    light.floor_lamp_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 454
+      friendly_name: Floor lamp light
+      supported_features: 43
+      state: 'on'
+    light.kitchen_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 454
+      friendly_name: Kitchen light
+      supported_features: 43
+      state: 'on'
+- id: '1606572504331'
+  name: living_room_bedtime
+  entities:
+    light.planet_l:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Planet L
+      supported_features: 43
+      state: 'off'
+    light.planet_m:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Planet M
+      supported_features: 43
+      state: 'off'
+    light.planet_s:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Planet S
+      supported_features: 43
+      state: 'off'
+    light.floor_lamp_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 128
+      color_temp: 454
+      friendly_name: Floor lamp light
+      supported_features: 43
+      state: 'on'
+    light.kitchen_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Kitchen light
+      supported_features: 43
+      state: 'off'
+- id: '1606572569728'
+  name: living_room_off
+  entities:
+    light.planet_s:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Planet S
+      supported_features: 43
+      state: 'off'
+    light.planet_m:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Planet M
+      supported_features: 43
+      state: 'off'
+    light.planet_l:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Planet L
+      supported_features: 43
+      state: 'off'
+    light.floor_lamp_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Floor lamp light
+      supported_features: 43
+      state: 'off'
+    light.kitchen_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Kitchen light
+      supported_features: 43
+      state: 'off'
+- id: '1606574985449'
+  name: living_room_movie
+  entities:
+    light.planet_s:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 128
+      color_temp: 375
+      friendly_name: Planet S
+      supported_features: 43
+      state: 'on'
+    light.planet_m:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 128
+      color_temp: 375
+      friendly_name: Planet M
+      supported_features: 43
+      state: 'on'
+    light.planet_l:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 178
+      color_temp: 454
+      friendly_name: Planet L
+      supported_features: 43
+      state: 'on'
+    light.floor_lamp_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 191
+      color_temp: 454
+      friendly_name: Floor lamp light
+      supported_features: 43
+      state: 'on'
+    light.kitchen_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 128
+      color_temp: 454
+      friendly_name: Kitchen light
+      supported_features: 43
+      state: 'on'
+- id: '1606660374956'
+  name: guest_room_evening
+  entities:
+    light.guestroom_desk_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 454
+      friendly_name: Guestroom desk light
+      supported_features: 43
+      state: 'on'
+    light.guestroom_floor_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 398
+      friendly_name: Guestroom floor light
+      supported_features: 43
+      state: 'on'
+- id: '1606662445734'
+  name: guest_room_off
+  entities:
+    light.guestroom_desk_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Guestroom desk light
+      supported_features: 43
+      state: 'off'
+    light.guestroom_floor_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Guestroom floor light
+      supported_features: 43
+      state: 'off'
+- id: '1606748645039'
+  name: bedroom_off
+  entities:
+    light.bedroom_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Bedroom light
+      supported_features: 43
+      state: 'off'
+    light.bedroom_color_light:
+      friendly_name: Bedroom Color light
+      state: 'off'
+- id: '1606748926611'
+  name: bedroom_dimmed
+  entities:
+    light.bedroom_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 51
+      color_temp: 454
+      friendly_name: Bedroom light
+      supported_features: 43
+      state: 'on'
+    light.bedroom_color_light:
+      brightness: 64
+      friendly_name: Bedroom Color light
+      state: 'on'
+- id: '1606749024873'
+  name: bedroom_on
+  entities:
+    light.bedroom_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 454
+      friendly_name: Bedroom light
+      supported_features: 43
+      state: 'on'
+    light.bedroom_color_light:
+      brightness: 191
+      friendly_name: Bedroom Color light
+      state: 'on'

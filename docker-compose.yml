@@ -1,0 +1,68 @@
+version: '3'
+services:
+  home-assistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - ./home-assistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    devices:
+    - /dev/ttyACM0:/dev/ttyACM0
+    restart: always
+    network_mode: host
+    depends_on:
+    - deconz
+    healthcheck:
+      test: "curl -Lf http://localhost:8123 || exit 1"
+      interval: 15s
+      timeout: 15s
+      retries: 10
+
+  deconz:
+    container_name: deconz
+    image: marthoc/deconz:latest
+    network_mode: host
+    restart: always
+    volumes:
+      - ./deconz:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    environment:
+      - DECONZ_WEB_PORT=8666
+      - DECONZ_WS_PORT=8667
+      - DEBUG_INFO=1
+      - DEBUG_APS=0
+      - DEBUG_ZCL=0
+      - DEBUG_ZDP=0
+      - DEBUG_OTAU=0
+    healthcheck:
+      test: "curl -Lf http://localhost:8666 || exit 1"
+      interval: 15s
+      timeout: 15s
+      retries: 10
+
+  node-red:
+    container_name: node-red
+    image: nodered/node-red:latest
+    build: ./tools/node-red-docker
+    volumes:
+      - ./node-red:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - TZ=Europe/Copenhagen
+    restart: always
+    network_mode: host
+    depends_on:
+      - home-assistant
+    healthcheck:
+      test: "curl -Lf http://localhost:1880 || exit 1"
+      interval: 15s
+      timeout: 15s
+      retries: 10
+  
+#   mqtt:
+#     container_name: mqtt
+#     image: eclipse-mosquitto:latest
+#     restart: always
+#     network_mode: host
