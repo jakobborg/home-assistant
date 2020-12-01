@@ -30,9 +30,6 @@ automation:
   - condition: state
     entity_id: input_boolean.home_occupancy
     state: 'on'
-  - condition: state
-    entity_id: input_boolean.senja_home
-    state: 'off'
   action:
   - service: input_boolean.turn_off
     data:
