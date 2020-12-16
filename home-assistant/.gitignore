@@ -8,6 +8,8 @@
 !*.md
 !packages
 !packages/**
+!blueprints
+!blueprints/**
 
 # Ignore folders.
 .storage
