@@ -314,3 +314,18 @@
       brightness: 191
       friendly_name: Bedroom Color light
       state: 'on'
+- id: '1611228040159'
+  name: bedroom_bedtime
+  entities:
+    light.bedroom_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 128
+      color_temp: 454
+      friendly_name: Bedroom light
+      supported_features: 43
+      state: 'on'
+    light.bedroom_color_light:
+      brightness: 64
+      friendly_name: Bedroom Color light
+      state: 'on'

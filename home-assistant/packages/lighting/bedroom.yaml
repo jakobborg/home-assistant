@@ -3,6 +3,7 @@ input_select:
     options:
     - 'off'
     - dimmed
+    - bedtime
     - 'on'
 
 automation:
@@ -13,7 +14,7 @@ automation:
       morning: dimmed
       day: 'off'
       evening: dimmed
-      bedtime: 'on'
+      bedtime: bedtime
       night: 'off'
   trigger:
     platform: state

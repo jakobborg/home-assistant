@@ -21,3 +21,10 @@ input_boolean:
     name: Presence
     icon: mdi:tools
     initial: off
+
+# Resources
+
+lovelace:
+  resources:
+  - url: /local/mini-media-player-bundle.js?v=1.11.0
+    type: module
