@@ -1,0 +1,61 @@
+input_select:
+  day_mode:
+    name: Day mode
+    options:
+      - morning
+      - day
+      - evening
+      - late_evening
+      - night
+
+automation:
+- alias: day_mode - morning
+  trigger:
+    platform: time
+    at: '06:30:00'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.day_mode
+      option: 'morning'
+
+- alias: day_mode - day
+  trigger:
+    platform: time
+    at: '10:00:00'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.day_mode
+      option: 'day'
+
+- alias: day_mode - evening
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.sun_elevation
+    below: 6
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.day_mode
+      option: 'evening'
+
+- alias: day_mode - late_evening
+  trigger:
+    platform: time
+    at: '21:30:00'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.day_mode
+      option: 'late_evening'
+
+- alias: day_mode - night
+  trigger:
+    platform: time
+    at: '23:30:00'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.day_mode
+      option: 'night'

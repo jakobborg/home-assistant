@@ -22,6 +22,15 @@ input_boolean:
     icon: mdi:tools
     initial: off
 
+input_select:
+
+  radio_station:
+    name: Radio station
+    options:
+    - DR P3
+    - DR P4
+    - DR P6 Beat
+
 # Resources
 
 lovelace:

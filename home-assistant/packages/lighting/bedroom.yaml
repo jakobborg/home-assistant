@@ -25,7 +25,7 @@ automation:
       entity_id: input_select.bedroom_lights
       option: "{{ map[states('input_select.lights_mode')] }}"
 
-- alias: "[Guest room] Activate scene"
+- alias: "[Bedroom] Activate scene"
   variables:
     transitions:
       'off': 240
@@ -37,3 +37,16 @@ automation:
     data:
       entity_id: "{{ 'scene.bedroom_' ~ states('input_select.bedroom_lights') }}"
       transition: "{{ transitions[ states('input_select.bedroom_lights') ] or 15 }}"
+
+- alias: "[TEST] Trådfri Button"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: tradfri_shortcut_button
+      device_id: b13c21e0c84270773348db20eac75da7
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lights_mode
+      option: 'night'

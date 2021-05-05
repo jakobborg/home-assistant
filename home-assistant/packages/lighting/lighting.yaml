@@ -18,6 +18,16 @@ sensor:
       value_template: "{{ state_attr('sun.sun','elevation') }}"      
 
 automation:
+- alias: Set lights mode to 'day' when day mode is set to 'day'
+  trigger:
+    platform: state
+    entity_id: input_select.day_mode
+    to: 'day'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lights_mode
+      option: 'day'
 
 - alias: Start morning routine when presence detected in hallway
   trigger:

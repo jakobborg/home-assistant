@@ -1,0 +1,15 @@
+play_radio:
+  sequence:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.stereo
+      volume_level: 0.25
+  - service: media_player.play_media
+    data_template:
+      entity_id: media_player.stereo
+      media_content_id: >
+        {% if is_state("input_select.radio_station", "DR P3") %} http://live-icy.gslb01.dr.dk:80/A/A05H.mp3
+        {% elif is_state("input_select.radio_station", "DR P4") %} http://live-icy.gslb01.dr.dk:80/A/A08H.mp3
+        {% elif is_state("input_select.radio_station", "DR P6 Beat") %} http://live-icy.gslb01.dr.dk:80/A/A29H.mp3
+        {% endif %}
+      media_content_type: 'audio/mp3'

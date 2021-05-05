@@ -1,0 +1,73 @@
+blueprint:
+  name: Motion-activated light
+  description: Turn on a light when motion is detected.
+  domain: automation
+  input:
+    motion_entity:
+      name: Motion Sensor
+      selector:
+        entity:
+          domain: binary_sensor
+          device_class: motion
+    scene_on:
+      name: Scene on
+      selector:
+        entity:
+          domain: scene
+    scene_off:
+      name: Scene off
+      selector:
+        entity:
+          domain: scene
+    lights_mode:
+      name: Light mode
+      selector:
+        select:
+          options:
+            - all
+            - morning
+            - evening
+            - night
+    wait_time:
+      name: Wait time
+      default: 60
+      selector:
+        number:
+          min: 0
+          max: 300
+          unit_of_measurement: seconds
+
+mode: restart
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id: !input motion_entity
+  from: "off"
+  to: "on"
+variables:
+  lights_mode: !input lights_mode
+condition:
+  condition: or
+  conditions:
+  - condition: state
+    entity_id: input_select.lights_mode
+    state: !input lights_mode
+  - condition: template
+    value_template: "{{ lights_mode == 'all' }}"
+
+action:
+  - service: scene.turn_on
+    data:
+      entity_id: !input scene_on
+      transition: 1
+  - wait_for_trigger:
+      platform: state
+      entity_id: !input motion_entity
+      from: 'on'
+      to: 'off'
+  - delay: !input wait_time
+  - service: scene.turn_on
+    data:
+      entity_id: !input scene_off
+      transition: 15

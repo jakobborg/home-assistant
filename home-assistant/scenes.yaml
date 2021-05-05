@@ -41,6 +41,14 @@
       friendly_name: Planet L
       supported_features: 43
       state: 'on'
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 350
+      friendly_name: Dinner table light
+      supported_features: 43
+      state: 'on'
 - id: '1606572076120'
   name: living_room_evening
   entities:
@@ -82,6 +90,14 @@
       brightness: 255
       color_temp: 454
       friendly_name: Planet L
+      supported_features: 43
+      state: 'on'
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 320
+      friendly_name: Dinner table light
       supported_features: 43
       state: 'on'
 - id: '1606572457026'
@@ -127,6 +143,14 @@
       friendly_name: Kitchen light
       supported_features: 43
       state: 'on'
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 320
+      friendly_name: Dinner table light
+      supported_features: 43
+      state: 'on'
 - id: '1606572504331'
   name: living_room_bedtime
   entities:
@@ -162,6 +186,12 @@
       friendly_name: Kitchen light
       supported_features: 43
       state: 'off'
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Dinner table light
+      supported_features: 43
+      state: 'off'
 - id: '1606572569728'
   name: living_room_off
   entities:
@@ -194,6 +224,16 @@
       max_mireds: 454
       friendly_name: Kitchen light
       supported_features: 43
+      state: 'off'
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Dinner table light
+      supported_features: 43
+      state: 'off'
+    light.bass_light_plug:
+      friendly_name: Bass light plug
+      supported_features: 40
       state: 'off'
 - id: '1606574985449'
   name: living_room_movie
@@ -236,6 +276,14 @@
       brightness: 128
       color_temp: 454
       friendly_name: Kitchen light
+      supported_features: 43
+      state: 'on'
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 128
+      color_temp: 420
+      friendly_name: Dinner table light
       supported_features: 43
       state: 'on'
 - id: '1606660374956'
@@ -329,3 +377,34 @@
       brightness: 64
       friendly_name: Bedroom Color light
       state: 'on'
+- id: '1620239981627'
+  name: hallway_dimmed
+  entities:
+    light.hallway_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 51
+      color_temp: 454
+      friendly_name: Hallway light
+      supported_features: 43
+      state: 'on'
+- id: '1620240038390'
+  name: hallway_on (evening)
+  entities:
+    light.hallway_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 454
+      friendly_name: Hallway light
+      supported_features: 43
+      state: 'on'
+- id: '1620240072193'
+  name: hallway_off
+  entities:
+    light.hallway_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Hallway light
+      supported_features: 43
+      state: 'off'
