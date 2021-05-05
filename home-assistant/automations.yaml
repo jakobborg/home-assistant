@@ -1,28 +1,28 @@
-- id: '1620240236151'
-  alias: Hallway - 2 - Motion-activated light (evening)
-  description: ''
-  use_blueprint:
-    path: homeassistant/motion_light_2.yaml
-    input:
-      motion_entity: binary_sensor.hallway_motion_sensor
-      scene_on: scene.hallway_on_evening
-      scene_off: scene.hallway_dimmed
-      lights_mode: evening
 - id: '1620242106419'
-  alias: Hallway - 1 - Motion-activated light (morning)
+  alias: Motion light - Hallway - 1 morning
   description: ''
   use_blueprint:
-    path: homeassistant/motion_light_2.yaml
+    path: homeassistant/motion_light.yaml
     input:
       motion_entity: binary_sensor.hallway_motion_sensor
       scene_on: scene.hallway_on_evening
       scene_off: scene.hallway_dimmed
       lights_mode: morning
-- id: '1620242803731'
-  alias: Hallway - 3 - Motion-activated light (night)
+- id: '1620240236151'
+  alias: Motion light - Hallway - 2 evening
   description: ''
   use_blueprint:
-    path: homeassistant/motion_light_2.yaml
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.hallway_motion_sensor
+      scene_on: scene.hallway_on_evening
+      scene_off: scene.hallway_dimmed
+      lights_mode: evening
+- id: '1620242803731'
+  alias: Motion light - Hallway - 3 night
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
     input:
       motion_entity: binary_sensor.hallway_motion_sensor
       scene_on: scene.hallway_dimmed
