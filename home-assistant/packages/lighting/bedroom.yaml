@@ -28,7 +28,7 @@ automation:
 - alias: "[Bedroom] Activate scene"
   variables:
     transitions:
-      'off': 240
+      'off': 120
   trigger:
     platform: state
     entity_id: input_select.bedroom_lights

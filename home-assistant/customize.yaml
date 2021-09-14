@@ -1,2 +1,12 @@
 zone.home:
   radius: 150
+light.planet_l:
+  icon: mdi:earth
+light.planet_m:
+  icon: mdi:earth
+light.planet_s:
+  icon: mdi:earth
+light.reading_light:
+  icon: mdi:floor-lamp
+light.floor_lamp_light:
+  icon: mdi:floor-lamp

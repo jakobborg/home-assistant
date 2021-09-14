@@ -49,6 +49,14 @@
       friendly_name: Dinner table light
       supported_features: 43
       state: 'on'
+    light.reading_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 128
+      color_temp: 399
+      friendly_name: Reading light
+      supported_features: 43
+      state: 'on'
 - id: '1606572076120'
   name: living_room_evening
   entities:
@@ -100,6 +108,14 @@
       friendly_name: Dinner table light
       supported_features: 43
       state: 'on'
+    light.reading_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 255
+      color_temp: 400
+      friendly_name: Reading light
+      supported_features: 43
+      state: 'on'
 - id: '1606572457026'
   name: living_room_late_evening
   entities:
@@ -146,9 +162,17 @@
     light.dinner_table_light:
       min_mireds: 153
       max_mireds: 454
-      brightness: 255
+      brightness: 157
       color_temp: 320
       friendly_name: Dinner table light
+      supported_features: 43
+      state: 'on'
+    light.reading_light:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 191
+      color_temp: 454
+      friendly_name: Reading light
       supported_features: 43
       state: 'on'
 - id: '1606572504331'
@@ -190,6 +214,12 @@
       min_mireds: 153
       max_mireds: 454
       friendly_name: Dinner table light
+      supported_features: 43
+      state: 'off'
+    light.reading_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Reading light
       supported_features: 43
       state: 'off'
 - id: '1606572569728'
@@ -234,6 +264,12 @@
     light.bass_light_plug:
       friendly_name: Bass light plug
       supported_features: 40
+      state: 'off'
+    light.reading_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Reading light
+      supported_features: 43
       state: 'off'
 - id: '1606574985449'
   name: living_room_movie
@@ -286,6 +322,12 @@
       friendly_name: Dinner table light
       supported_features: 43
       state: 'on'
+    light.reading_light:
+      min_mireds: 153
+      max_mireds: 454
+      friendly_name: Reading light
+      supported_features: 43
+      state: 'off'
 - id: '1606660374956'
   name: guest_room_evening
   entities:
