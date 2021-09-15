@@ -10,3 +10,23 @@ light.reading_light:
   icon: mdi:floor-lamp
 light.floor_lamp_light:
   icon: mdi:floor-lamp
+light.kitchen_light:
+  icon: mdi:ceiling-light
+light.dinner_table_light:
+  icon: mdi:ceiling-light
+light.bass_light_plug:
+  icon: mdi:lamp
+light.bedroom_light:
+  icon: mdi:lamp
+light.bedroom_color_light:
+  icon: mdi:lamp
+light.guestroom_desk_light:
+  icon: mdi:desk-lamp
+light.guestroom_floor_light:
+  icon: mdi:floor-lamp
+light.hallway_light:
+  icon: mdi:lamp
+light.wardrobe_light:
+  icon: mdi:lamp
+light.entrance_light:
+  icon: mdi:ceiling-light
