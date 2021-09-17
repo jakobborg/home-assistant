@@ -4,7 +4,7 @@
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:
-      motion_entity: binary_sensor.hallway_motion_sensor
+      motion_entity: binary_sensor.hallway_motion_sensor_occupancy
       scene_on: scene.hallway_on_evening
       scene_off: scene.hallway_dimmed
       lights_mode: morning
@@ -14,7 +14,7 @@
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:
-      motion_entity: binary_sensor.hallway_motion_sensor
+      motion_entity: binary_sensor.hallway_motion_sensor_occupancy
       scene_on: scene.hallway_on_evening
       scene_off: scene.hallway_dimmed
       lights_mode: evening
@@ -24,7 +24,7 @@
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:
-      motion_entity: binary_sensor.hallway_motion_sensor
+      motion_entity: binary_sensor.hallway_motion_sensor_occupancy
       scene_on: scene.hallway_dimmed
       scene_off: scene.hallway_off
       wait_time: 0

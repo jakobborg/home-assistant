@@ -1,0 +1,24 @@
+homeassistant: true
+permit_join: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://localhost
+serial:
+  port: /dev/ttyACM0
+frontend:
+  port: 8080
+devices:
+  '0x00158d00024dec98':
+    friendly_name: hallway_motion_sensor
+  '0x00158d0002760af1':
+    friendly_name: entrance_motion_sensor
+  '0x00158d000249f36f':
+    friendly_name: guestroom_environment_sensor
+  '0x00158d0002300b42':
+    friendly_name: hallway_environment_sensor
+  '0x00158d0002302711':
+    friendly_name: bedroom_environment_sensor
+  '0x14b457fffe7c2f46':
+    friendly_name: wardrobe_motion_sensor
+advanced:
+  log_level: info

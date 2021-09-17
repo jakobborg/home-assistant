@@ -11,38 +11,31 @@ services:
     restart: always
     network_mode: host
     depends_on:
-    - deconz
+    - mqtt
     healthcheck:
       test: "curl -Lf http://localhost:8123 || exit 1"
       interval: 15s
       timeout: 15s
       retries: 10
 
-  deconz:
-    container_name: deconz
-    image: marthoc/deconz:latest
-    network_mode: host
+  mqtt:
+    container_name: mqtt
+    image: eclipse-mosquitto:latest
     restart: always
+    network_mode: host
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    depends_on:
+    - mqtt
     volumes:
-      - ./deconz:/root/.local/share/dresden-elektronik/deCONZ
+    - ./zigbee2mqtt/data:/app/data
+    - /run/udev:/run/udev:ro
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
+    restart: always
+    network_mode: host
+#    privileged: true
     environment:
-      - DECONZ_WEB_PORT=8666
-      - DECONZ_WS_PORT=8667
-      - DEBUG_INFO=1
-      - DEBUG_APS=0
-      - DEBUG_ZCL=0
-      - DEBUG_ZDP=0
-      - DEBUG_OTAU=0
- #   healthcheck:
- #     test: "curl -Lf http://localhost:8666 || exit 1"
- #     interval: 15s
- #     timeout: 15s
- #     retries: 10
-
-#   mqtt:
-#     container_name: mqtt
-#     image: eclipse-mosquitto:latest
-#     restart: always
-#     network_mode: host
+      - TZ=Europe/Copenhagen

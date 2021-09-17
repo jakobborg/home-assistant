@@ -3,7 +3,7 @@ automation:
   mode: restart
   trigger:
     platform: state
-    entity_id: binary_sensor.entrance_motion_sensor
+    entity_id: binary_sensor.entrance_motion_sensor_occupancy
     to: 'on'
   action:
   - service: light.turn_on
@@ -14,7 +14,7 @@ automation:
       transition: 1
   - wait_for_trigger:
     - platform: state
-      entity_id: binary_sensor.entrance_motion_sensor
+      entity_id: binary_sensor.entrance_motion_sensor_occupancy
       to: 'off'
   - delay: '00:01:00'
   - service: light.turn_on
