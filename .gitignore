@@ -1,3 +1,4 @@
 deconz/
-node-red/
 tools/
+node_modules
+.npm

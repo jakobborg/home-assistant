@@ -1,29 +1,5 @@
 automation:
 
-- alias: "[Wardrobe] Trigger light on motion"
-  mode: restart
-  trigger:
-    platform: state
-    entity_id: binary_sensor.wardrobe_motion_sensor_occupancy
-    to: 'on'
-  action:
-  - service: light.turn_on
-    data:
-      entity_id: light.wardrobe_light
-      kelvin: 2700
-      brightness_pct: 100
-      transition: 1
-  - wait_for_trigger:
-    - platform: state
-      entity_id: binary_sensor.wardrobe_motion_sensor_occupancy
-      to: 'off'
-  - delay: '00:01:00'
-  - service: light.turn_on
-    data:
-      entity_id: light.wardrobe_light
-      brightness_pct: 0
-      transition: 15
-
 - alias: "[Wardrobe] Dim light on night mode"
   trigger:
     platform: state

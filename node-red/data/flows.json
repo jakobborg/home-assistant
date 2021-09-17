@@ -1,0 +1,696 @@
+[
+    {
+        "id": "0d3d2868f32e10d5",
+        "type": "tab",
+        "label": "Lights",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3e6d0c3ac4655718",
+        "type": "subflow",
+        "name": "Occupancy",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [
+            {
+                "name": "sensor",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "modes",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "scene_on",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-toggle-on"
+                }
+            },
+            {
+                "name": "scene_off",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-toggle-off"
+                }
+            },
+            {
+                "name": "delay",
+                "type": "num",
+                "value": ""
+            }
+        ],
+        "meta": {},
+        "color": "#3FADB5",
+        "icon": "node-red/light.svg",
+        "status": {
+            "x": 1360,
+            "y": 500,
+            "wires": [
+                {
+                    "id": "3c839415ba3554cc",
+                    "port": 0
+                },
+                {
+                    "id": "d310b1a9662f4c39",
+                    "port": 0
+                },
+                {
+                    "id": "66d3c5a153dcb50e",
+                    "port": 0
+                },
+                {
+                    "id": "567b0f726401b590",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "fe392a52c083df8f",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 1,
+        "legacy": false,
+        "addon": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    },
+    {
+        "id": "01731ae96af296dc",
+        "type": "ha-zone",
+        "z": "0d3d2868f32e10d5",
+        "name": "",
+        "server": "fe392a52c083df8f",
+        "version": 0,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entities": [
+            "person.caroline"
+        ],
+        "event": "leave",
+        "zones": [
+            "zone.schultz_as"
+        ],
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "45e38fd333b66f2b"
+            ]
+        ]
+    },
+    {
+        "id": "45e38fd333b66f2b",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_jakob_phone",
+        "entityId": "",
+        "data": "{\"title\":\"Caroline left work\",\"message\":\"Caroline has just left work\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1030,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1820c63b4f30e881",
+        "type": "inject",
+        "z": "0d3d2868f32e10d5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 600,
+        "y": 320,
+        "wires": [
+            [
+                "45e38fd333b66f2b"
+            ]
+        ]
+    },
+    {
+        "id": "d38e3f97ba8923b3",
+        "type": "server-state-changed",
+        "z": "3e6d0c3ac4655718",
+        "name": "",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "${sensor}",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "occupancy",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "x": 290,
+        "y": 280,
+        "wires": [
+            [
+                "f88828f4e8e98e8f"
+            ]
+        ]
+    },
+    {
+        "id": "2c7ae2bf728b4297",
+        "type": "subflow:3e6d0c3ac4655718",
+        "z": "0d3d2868f32e10d5",
+        "name": "Hallway (morning, evening)",
+        "env": [
+            {
+                "name": "sensor",
+                "value": "binary_sensor.hallway_motion_sensor_occupancy",
+                "type": "str"
+            },
+            {
+                "name": "modes",
+                "value": "morning, evening",
+                "type": "str"
+            },
+            {
+                "name": "scene_on",
+                "value": "scene.hallway_on",
+                "type": "str"
+            },
+            {
+                "name": "scene_off",
+                "value": "scene.hallway_dimmed",
+                "type": "str"
+            },
+            {
+                "name": "delay",
+                "value": "60",
+                "type": "num"
+            },
+            {
+                "name": "light",
+                "value": "light.hallway_light",
+                "type": "str"
+            }
+        ],
+        "x": 570,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "ae8c9bc5dda77824",
+        "type": "delay",
+        "z": "3e6d0c3ac4655718",
+        "name": "Delay msg.delay",
+        "pauseType": "delayv",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 570,
+        "y": 520,
+        "wires": [
+            [
+                "53ad59d9912ece5d"
+            ]
+        ]
+    },
+    {
+        "id": "f88828f4e8e98e8f",
+        "type": "api-current-state",
+        "z": "3e6d0c3ac4655718",
+        "name": "Check lights mode",
+        "server": "fe392a52c083df8f",
+        "version": 2,
+        "outputs": 2,
+        "halt_if": "${modes}",
+        "halt_if_type": "str",
+        "halt_if_compare": "includes",
+        "entity_id": "input_select.lights_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "lights_mode",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "dea38b67f6dad5a4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b9353999ee2d6177",
+        "type": "server-state-changed",
+        "z": "3e6d0c3ac4655718",
+        "name": "lights_mode changed",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.lights_mode",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "${modes}",
+        "halt_if_type": "str",
+        "halt_if_compare": "does_not_include",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "reset",
+                "propertyType": "msg",
+                "value": "1",
+                "valueType": "str"
+            },
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "reset",
+                "valueType": "str"
+            }
+        ],
+        "x": 300,
+        "y": 580,
+        "wires": [
+            [
+                "ae8c9bc5dda77824",
+                "d310b1a9662f4c39"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0fd8c1c0a3f93bcc",
+        "type": "api-call-service",
+        "z": "3e6d0c3ac4655718",
+        "name": "Run scene_on",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "${scene_on}",
+        "data": "{\"transition\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "reset",
+                "propertyType": "msg",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "queue": "none",
+        "x": 580,
+        "y": 420,
+        "wires": [
+            [
+                "ae8c9bc5dda77824",
+                "567b0f726401b590"
+            ]
+        ]
+    },
+    {
+        "id": "53ad59d9912ece5d",
+        "type": "api-call-service",
+        "z": "3e6d0c3ac4655718",
+        "name": "Run scene_off",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "${scene_off}",
+        "data": "{\"transition\":15}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 820,
+        "y": 520,
+        "wires": [
+            [
+                "3c839415ba3554cc"
+            ]
+        ]
+    },
+    {
+        "id": "f1483386a33b3ac4",
+        "type": "subflow:3e6d0c3ac4655718",
+        "z": "0d3d2868f32e10d5",
+        "name": "Hallway (night)",
+        "env": [
+            {
+                "name": "sensor",
+                "value": "binary_sensor.hallway_motion_sensor_occupancy",
+                "type": "str"
+            },
+            {
+                "name": "modes",
+                "value": "night",
+                "type": "str"
+            },
+            {
+                "name": "scene_on",
+                "value": "scene.hallway_dimmed",
+                "type": "str"
+            },
+            {
+                "name": "scene_off",
+                "value": "scene.hallway_off",
+                "type": "str"
+            },
+            {
+                "name": "delay",
+                "value": "0",
+                "type": "num"
+            },
+            {
+                "name": "light",
+                "value": "light.dinner_table_light",
+                "type": "str"
+            }
+        ],
+        "x": 540,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "05307eb0961d6c3d",
+        "type": "switch",
+        "z": "3e6d0c3ac4655718",
+        "name": "Occupancy?",
+        "property": "occupancy",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 460,
+        "wires": [
+            [
+                "0fd8c1c0a3f93bcc"
+            ],
+            [
+                "66d3c5a153dcb50e",
+                "ae8c9bc5dda77824"
+            ]
+        ]
+    },
+    {
+        "id": "3c839415ba3554cc",
+        "type": "template",
+        "z": "3e6d0c3ac4655718",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"fill\": \"red\",\n    \"text\": \"Running {{scene_off}}\"\n}",
+        "output": "json",
+        "x": 1040,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d310b1a9662f4c39",
+        "type": "template",
+        "z": "3e6d0c3ac4655718",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"fill\": \"grey\",\n    \"text\": \"Disabled\"\n}",
+        "output": "json",
+        "x": 1040,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "66d3c5a153dcb50e",
+        "type": "template",
+        "z": "3e6d0c3ac4655718",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"fill\": \"yellow\",\n    \"text\": \"Occupancy off - waiting {{delay}} ms\"\n}",
+        "output": "json",
+        "x": 1040,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "567b0f726401b590",
+        "type": "template",
+        "z": "3e6d0c3ac4655718",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"fill\": \"green\",\n    \"text\": \"Occupancy detected - Running {{scene_on}}\"\n}",
+        "output": "json",
+        "x": 1040,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1609f491b6cd7d36",
+        "type": "subflow:3e6d0c3ac4655718",
+        "z": "0d3d2868f32e10d5",
+        "name": "Entrance (morning, evening, bedtime, night)",
+        "env": [
+            {
+                "name": "sensor",
+                "value": "binary_sensor.entrance_motion_sensor_occupancy",
+                "type": "str"
+            },
+            {
+                "name": "modes",
+                "value": "morning, evening, bedtime, night",
+                "type": "str"
+            },
+            {
+                "name": "scene_on",
+                "value": "scene.entrance_on",
+                "type": "str"
+            },
+            {
+                "name": "scene_off",
+                "value": "scene.entrance_off",
+                "type": "str"
+            },
+            {
+                "name": "delay",
+                "value": "60",
+                "type": "num"
+            }
+        ],
+        "x": 630,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "55c52e3f88ca3b36",
+        "type": "subflow:3e6d0c3ac4655718",
+        "z": "0d3d2868f32e10d5",
+        "name": "Wardrobe (morning, day, evening, bedtime, night)",
+        "env": [
+            {
+                "name": "sensor",
+                "value": "binary_sensor.wardrobe_motion_sensor_occupancy",
+                "type": "str"
+            },
+            {
+                "name": "modes",
+                "value": "morning, day, evening, bedtime, night",
+                "type": "str"
+            },
+            {
+                "name": "scene_on",
+                "value": "scene.wardrobe_on",
+                "type": "str"
+            },
+            {
+                "name": "scene_off",
+                "value": "scene.wardrobe_off",
+                "type": "str"
+            },
+            {
+                "name": "delay",
+                "value": "60",
+                "type": "num"
+            }
+        ],
+        "x": 650,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "dea38b67f6dad5a4",
+        "type": "change",
+        "z": "3e6d0c3ac4655718",
+        "name": "Set msg properties",
+        "rules": [
+            {
+                "t": "set",
+                "p": "scene_on",
+                "pt": "msg",
+                "to": "${scene_on}",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "scene_off",
+                "pt": "msg",
+                "to": "${scene_off}",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "delay",
+                "pt": "msg",
+                "to": "${delay}",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "05307eb0961d6c3d"
+            ]
+        ]
+    }
+]

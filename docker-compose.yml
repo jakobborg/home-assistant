@@ -39,3 +39,20 @@ services:
 #    privileged: true
     environment:
       - TZ=Europe/Copenhagen
+
+  node-red:
+    container_name: node-red
+    image: nodered/node-red
+    # ports:
+    #   - "1880:1880"
+    volumes:
+      # Local path where all Node-RED config will be stored.
+    - ./node-red/data:/data
+    depends_on:
+    - home-assistant
+    - mqtt
+    network_mode: host
+    environment:
+      TZ: "Europe/Copenhagen"
+    user: "${LOCAL_USER}:${LOCAL_USER}"
+    restart: unless-stopped

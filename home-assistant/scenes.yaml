@@ -431,15 +431,29 @@
       supported_features: 43
       state: 'on'
 - id: '1620240038390'
-  name: hallway_on (evening)
+  name: hallway_on
   entities:
     light.hallway_light:
       min_mireds: 153
       max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
       brightness: 255
       color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
       friendly_name: Hallway light
       supported_features: 43
+      icon: mdi:lamp
       state: 'on'
 - id: '1620240072193'
   name: hallway_off
@@ -449,4 +463,140 @@
       max_mireds: 454
       friendly_name: Hallway light
       supported_features: 43
+      state: 'off'
+- id: '1631870096125'
+  name: dinner_table_on
+  entities:
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 370
+      hs_color:
+      - 28.391
+      - 65.659
+      rgb_color:
+      - 255
+      - 166
+      - 87
+      xy_color:
+      - 0.526
+      - 0.387
+      friendly_name: Dinner table light
+      supported_features: 43
+      icon: mdi:ceiling-light
+      state: 'on'
+- id: '1631870134676'
+  name: dinner_table_off
+  entities:
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      friendly_name: Dinner table light
+      supported_features: 43
+      icon: mdi:ceiling-light
+      state: 'off'
+- id: '1631870167061'
+  name: dinner_table_dimmed
+  entities:
+    light.dinner_table_light:
+      min_mireds: 153
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 61
+      color_temp: 370
+      hs_color:
+      - 28.391
+      - 65.659
+      rgb_color:
+      - 255
+      - 166
+      - 87
+      xy_color:
+      - 0.526
+      - 0.387
+      friendly_name: Dinner table light
+      supported_features: 43
+      icon: mdi:ceiling-light
+      state: 'on'
+- id: '1631877386720'
+  name: entrance_on
+  entities:
+    light.entrance_light:
+      min_mireds: 153
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 370
+      hs_color:
+      - 28.391
+      - 65.659
+      rgb_color:
+      - 255
+      - 166
+      - 87
+      xy_color:
+      - 0.526
+      - 0.387
+      friendly_name: Entrance light
+      supported_features: 43
+      icon: mdi:ceiling-light
+      state: 'on'
+- id: '1631877400883'
+  name: entrance_off
+  entities:
+    light.entrance_light:
+      min_mireds: 153
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      friendly_name: Entrance light
+      supported_features: 43
+      icon: mdi:ceiling-light
+      state: 'off'
+- id: '1631878743383'
+  name: wardrobe_on
+  entities:
+    light.wardrobe_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 370
+      hs_color:
+      - 28.391
+      - 65.659
+      rgb_color:
+      - 255
+      - 166
+      - 87
+      xy_color:
+      - 0.526
+      - 0.387
+      friendly_name: Wardrobe light
+      supported_features: 43
+      icon: mdi:lamp
+      state: 'on'
+- id: '1631878754867'
+  name: wardrobe_off
+  entities:
+    light.wardrobe_light:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      friendly_name: Wardrobe light
+      supported_features: 43
+      icon: mdi:lamp
       state: 'off'
