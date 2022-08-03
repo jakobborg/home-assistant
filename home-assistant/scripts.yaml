@@ -11,5 +11,6 @@ play_radio:
         {% if is_state("input_select.radio_station", "DR P3") %} http://live-icy.gslb01.dr.dk:80/A/A05H.mp3
         {% elif is_state("input_select.radio_station", "DR P4") %} http://live-icy.gslb01.dr.dk:80/A/A08H.mp3
         {% elif is_state("input_select.radio_station", "DR P6 Beat") %} http://live-icy.gslb01.dr.dk:80/A/A29H.mp3
+        {% elif is_state("input_select.radio_station", "DR P1") %} http://live-icy.gslb01.dr.dk:80/A/A03H.mp3
         {% endif %}
       media_content_type: 'audio/mp3'

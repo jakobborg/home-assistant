@@ -1,7 +1,7 @@
 {
     "node-red": {
         "name": "node-red",
-        "version": "2.0.6",
+        "version": "2.2.2",
         "local": false,
         "user": false,
         "nodes": {
@@ -64,7 +64,8 @@
                 "name": "link",
                 "types": [
                     "link in",
-                    "link out"
+                    "link out",
+                    "link call"
                 ],
                 "enabled": true,
                 "local": false,
@@ -401,6 +402,62 @@
                 "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/storage/23-watch.js"
+            }
+        }
+    },
+    "node-red-contrib-home-assistant-websocket": {
+        "name": "node-red-contrib-home-assistant-websocket",
+        "version": "0.33.1",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "all": {
+                "name": "all",
+                "types": [
+                    "ha-api",
+                    "api-call-service",
+                    "server",
+                    "api-current-state",
+                    "ha-device",
+                    "ha-entity",
+                    "server-events",
+                    "server-state-changed",
+                    "ha-fire-event",
+                    "ha-get-entities",
+                    "api-get-history",
+                    "poll-state",
+                    "api-render-template",
+                    "ha-tag",
+                    "ha-time",
+                    "trigger-state",
+                    "ha-wait-until",
+                    "ha-webhook",
+                    "ha-zone"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-home-assistant-websocket",
+                "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/dist/index.js"
+            }
+        }
+    },
+    "node-red-contrib-eztimer": {
+        "name": "node-red-contrib-eztimer",
+        "version": "1.2.7",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "eztimer": {
+                "name": "eztimer",
+                "types": [
+                    "eztimer"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-eztimer",
+                "file": "/data/node_modules/node-red-contrib-eztimer/index.js"
             }
         }
     }

@@ -29,58 +29,20 @@ automation:
       entity_id: input_select.lights_mode
       option: 'day'
 
-- alias: Start morning routine when presence detected in hallway
-  trigger:
-    platform: time
-    at: '06:00:00'
-  condition:
-    condition: time
-    weekday: [ mon, tue, wed, thu, fri ]
-  action:
-  - wait_for_trigger:
-    - platform: state
-      entity_id: binary_sensor.hallway_motion_sensor
-      to: 'on'
-    timeout: '02:00:00'
-    continue_on_timeout: false
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.lights_mode
-      option: 'morning'
-
-- alias: "Set lights_mode = evening when sun goes below 6 degrees"
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.sun_elevation
-    below: 6
-  action:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.lights_mode
-      option: 'evening'
-
 - alias: "Lights mode automation"
   variables:
     settings:
       morning:        
-        hallway_light:          [  25, 2200 ]
         wardrobe_light:         [   0, 2200 ]
-        bedroom_light:          [  10, 2200 ]
 
       evening:
-        hallway_light:          [  25, 2200 ]
         wardrobe_light:         [   0, 2200 ]
-        bedroom_light:          [  25, 2200 ]
                       
       bedtime:
-        hallway_light:          [ 100, 2200 ]
         wardrobe_light:         [ 100, 2200 ]
-        bedroom_light:          [ 100, 2200 ]
 
       night:
-        hallway_light:          [   0, 2200 ]
         wardrobe_light:         [   0, 2200 ]
-        bedroom_light:          [   0, 2200, 300 ]
   
   trigger:
     platform: state
@@ -103,7 +65,3 @@ automation:
           brightness_pct: "{{ brightness_pct }}"
           kelvin: "{{ kelvin }}"
           transition: "{{ transition }}"
-      # - service: system_log.write  
-      #   data:
-      #     message: "Setting light OFF to {{ transition }}"
-      #     level: info

@@ -2,46 +2,60 @@
     "0x00158d00024dec98": {
         "voltage": 3005,
         "battery": 100,
-        "illuminance": 254,
-        "illuminance_lux": 254,
+        "illuminance": 507,
+        "illuminance_lux": 507,
         "temperature": 30,
-        "occupancy": false
+        "occupancy": true,
+        "device_temperature": 30,
+        "linkquality": 255,
+        "power_outage_count": 32
     },
     "0x00158d0002760af1": {
         "voltage": 3015,
         "battery": 100,
-        "illuminance": 7,
-        "illuminance_lux": 7,
-        "temperature": 27,
-        "occupancy": false
+        "illuminance": 79,
+        "illuminance_lux": 79,
+        "temperature": 24,
+        "occupancy": false,
+        "device_temperature": 27,
+        "linkquality": 183,
+        "power_outage_count": 20
     },
     "0x00158d000249f36f": {
-        "voltage": 3025,
+        "voltage": 3035,
         "battery": 100,
-        "temperature": 22.52,
-        "humidity": 62.21,
-        "pressure": 1006.3
+        "temperature": 22.41,
+        "humidity": 64.42,
+        "pressure": 1008.5,
+        "linkquality": 255,
+        "power_outage_count": 790
     },
     "0x00158d0002300b42": {
         "voltage": 3005,
         "battery": 100,
-        "temperature": 23.56,
-        "humidity": 59.33,
-        "pressure": 1006.5
+        "temperature": 23.2,
+        "humidity": 59.6,
+        "pressure": 1008.6,
+        "linkquality": 255,
+        "power_outage_count": 7890
     },
     "0x00158d0002302711": {
-        "voltage": 3125,
+        "voltage": 3035,
         "battery": 100,
-        "temperature": 22.81,
-        "humidity": 61.35,
-        "pressure": 1006
+        "temperature": 23.22,
+        "humidity": 60.01,
+        "pressure": 1008.6,
+        "linkquality": 175,
+        "power_outage_count": 52847
     },
     "0x14b457fffe7c2f46": {
-        "battery": 87,
+        "battery": 60,
         "occupancy": false,
         "update": {
             "state": "idle"
         },
-        "update_available": false
+        "update_available": false,
+        "illuminance_above_threshold": false,
+        "linkquality": 111
     }
 }

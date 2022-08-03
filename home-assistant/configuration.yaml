@@ -2,6 +2,8 @@
 homeassistant:
   packages: !include_dir_named packages
   customize: !include customize.yaml
+  media_dirs:
+    local: /local-media
 
 default_config:
 
@@ -22,12 +24,19 @@ input_boolean:
     name: Presence
     icon: mdi:tools
     initial: off
+  morning_alarm:
+    name: Morning Alarm
+    initial: on
+  vacation:
+    name: Vacation
+    initial: off
 
 input_select:
 
   radio_station:
     name: Radio station
     options:
+    - DR P1
     - DR P3
     - DR P4
     - DR P6 Beat

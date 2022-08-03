@@ -5,8 +5,8 @@ mqtt:
   server: mqtt://localhost
 serial:
   port: /dev/ttyACM0
-# frontend:
-#  port: 8080
+frontend:
+  port: 8080
 devices:
   '0x00158d00024dec98':
     friendly_name: hallway_motion_sensor

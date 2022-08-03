@@ -6,6 +6,7 @@ services:
     volumes:
       - ./home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
+      - /home/jakob/media:/local-media
     devices:
     - /dev/ttyACM0:/dev/ttyACM0
     restart: always
@@ -54,5 +55,5 @@ services:
     network_mode: host
     environment:
       TZ: "Europe/Copenhagen"
-    user: "${LOCAL_USER}:${LOCAL_USER}"
+#    user: "${LOCAL_USER}:${LOCAL_USER}"
     restart: unless-stopped

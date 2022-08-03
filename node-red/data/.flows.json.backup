@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "76fb3f2f1d7c8cc8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "3e6d0c3ac4655718",
         "type": "subflow",
         "name": "Occupancy",
@@ -142,35 +149,6 @@
         ]
     },
     {
-        "id": "1820c63b4f30e881",
-        "type": "inject",
-        "z": "0d3d2868f32e10d5",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 600,
-        "y": 320,
-        "wires": [
-            [
-                "45e38fd333b66f2b"
-            ]
-        ]
-    },
-    {
         "id": "d38e3f97ba8923b3",
         "type": "server-state-changed",
         "z": "3e6d0c3ac4655718",
@@ -266,7 +244,7 @@
         "id": "ae8c9bc5dda77824",
         "type": "delay",
         "z": "3e6d0c3ac4655718",
-        "name": "Delay ${delay}",
+        "name": "Delay msg.delay",
         "pauseType": "delayv",
         "timeout": "60",
         "timeoutUnits": "seconds",
@@ -278,7 +256,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 580,
+        "x": 570,
         "y": 520,
         "wires": [
             [
@@ -326,7 +304,7 @@
         "id": "b9353999ee2d6177",
         "type": "server-state-changed",
         "z": "3e6d0c3ac4655718",
-        "name": "",
+        "name": "lights_mode changed",
         "server": "fe392a52c083df8f",
         "version": 3,
         "exposeToHomeAssistant": false,
@@ -371,7 +349,7 @@
                 "valueType": "str"
             }
         ],
-        "x": 240,
+        "x": 300,
         "y": 580,
         "wires": [
             [
@@ -538,7 +516,7 @@
         "fieldType": "msg",
         "format": "json",
         "syntax": "mustache",
-        "template": "{\n    \"fill\": \"grey\",\n    \"text\": \"Disabled\"\n}",
+        "template": "{\n    \"fill\": \"grey\",\n    \"text\": \"Automation disabled in current mode\"\n}",
         "output": "json",
         "x": 1040,
         "y": 560,
@@ -584,7 +562,7 @@
         "id": "1609f491b6cd7d36",
         "type": "subflow:3e6d0c3ac4655718",
         "z": "0d3d2868f32e10d5",
-        "name": "Entrance (morning, evening, bedtime, night)",
+        "name": "Entrance (morning, day, evening, bedtime, night)",
         "env": [
             {
                 "name": "sensor",
@@ -593,7 +571,7 @@
             },
             {
                 "name": "modes",
-                "value": "morning, evening, bedtime, night",
+                "value": "morning, day, evening, bedtime, night",
                 "type": "str"
             },
             {
@@ -612,7 +590,7 @@
                 "type": "num"
             }
         ],
-        "x": 630,
+        "x": 640,
         "y": 420,
         "wires": []
     },
@@ -620,7 +598,7 @@
         "id": "55c52e3f88ca3b36",
         "type": "subflow:3e6d0c3ac4655718",
         "z": "0d3d2868f32e10d5",
-        "name": "Wardrobe (morning, day, evening, bedtime, night)",
+        "name": "Wardrobe (morning, day, evening, bedtime)",
         "env": [
             {
                 "name": "sensor",
@@ -629,7 +607,7 @@
             },
             {
                 "name": "modes",
-                "value": "morning, day, evening, bedtime, night",
+                "value": "morning, day, evening, bedtime",
                 "type": "str"
             },
             {
@@ -648,7 +626,7 @@
                 "type": "num"
             }
         ],
-        "x": 650,
+        "x": 630,
         "y": 480,
         "wires": []
     },
@@ -691,6 +669,1004 @@
             [
                 "05307eb0961d6c3d"
             ]
+        ]
+    },
+    {
+        "id": "404583baaf8d4f6f",
+        "type": "server-state-changed",
+        "z": "0d3d2868f32e10d5",
+        "name": "State changed: lights_mode",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.lights_mode",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 560,
+        "y": 740,
+        "wires": [
+            [
+                "ab71100c3065b914"
+            ]
+        ]
+    },
+    {
+        "id": "ab71100c3065b914",
+        "type": "switch",
+        "z": "0d3d2868f32e10d5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "morning",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "day",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "evening",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "bedtime",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "night",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 810,
+        "y": 740,
+        "wires": [
+            [
+                "eec9ab2087760ddf"
+            ],
+            [
+                "806f875d4aeb551d"
+            ],
+            [
+                "63fcc9aefafd9c8d"
+            ],
+            [
+                "e8c884c2f954d840"
+            ],
+            [
+                "f44b8668dc518eaa"
+            ]
+        ]
+    },
+    {
+        "id": "cb5d20fb3d9d2006",
+        "type": "link in",
+        "z": "0d3d2868f32e10d5",
+        "name": "Morning lights",
+        "links": [
+            "eec9ab2087760ddf"
+        ],
+        "x": 435,
+        "y": 1240,
+        "wires": [
+            [
+                "e7a7cf0de1bd9a66",
+                "ac9fe23236bf161d",
+                "711179c401ad8842",
+                "fff4fb22117c1069"
+            ]
+        ]
+    },
+    {
+        "id": "eec9ab2087760ddf",
+        "type": "link out",
+        "z": "0d3d2868f32e10d5",
+        "name": "Morning",
+        "links": [
+            "cb5d20fb3d9d2006"
+        ],
+        "x": 1015,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e7a7cf0de1bd9a66",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Office",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.office_on",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 640,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "806f875d4aeb551d",
+        "type": "link out",
+        "z": "0d3d2868f32e10d5",
+        "name": "Day",
+        "links": [
+            "3e33ea0dadcffcc4"
+        ],
+        "x": 1015,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "2a115f3ec6fb5734",
+        "type": "comment",
+        "z": "0d3d2868f32e10d5",
+        "name": "Morning",
+        "info": "",
+        "x": 340,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "a4b2aa9b48bb0be2",
+        "type": "eztimer",
+        "z": "0d3d2868f32e10d5",
+        "name": "Weekdays @ 6:00",
+        "debug": false,
+        "autoname": "06:00",
+        "tag": "eztimer",
+        "topic": "",
+        "suspended": false,
+        "sendEventsOnSuspend": false,
+        "latLongSource": "manual",
+        "latLongHaZone": "zone.home",
+        "lat": "",
+        "lon": "",
+        "timerType": "2",
+        "startupMessage": false,
+        "ontype": "2",
+        "ontimesun": "dawn",
+        "ontimetod": "06:00",
+        "onpropertytype": "msg",
+        "onproperty": "payload",
+        "onvaluetype": "num",
+        "onvalue": 1,
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "onsuppressrepeats": false,
+        "offtype": "1",
+        "offtimesun": "dusk",
+        "offtimetod": "dusk",
+        "offduration": "00:01:00",
+        "offpropertytype": "msg",
+        "offproperty": "payload",
+        "offvaluetype": "num",
+        "offvalue": 0,
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "offsuppressrepeats": false,
+        "resend": false,
+        "resendInterval": "0s",
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": false,
+        "sun": false,
+        "x": 450,
+        "y": 960,
+        "wires": [
+            [
+                "75eac93f26942383"
+            ]
+        ]
+    },
+    {
+        "id": "75eac93f26942383",
+        "type": "api-current-state",
+        "z": "0d3d2868f32e10d5",
+        "name": "Alarm on?",
+        "server": "fe392a52c083df8f",
+        "version": 2,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.morning_alarm",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 670,
+        "y": 960,
+        "wires": [
+            [
+                "937b6a6c1dd0be0d",
+                "308c9d4b3bdb0230"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "937b6a6c1dd0be0d",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Bedroom Alarm",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.bedroom_alarm",
+        "data": "{\"transition\":1800}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1130,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "308c9d4b3bdb0230",
+        "type": "delay",
+        "z": "0d3d2868f32e10d5",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 890,
+        "y": 980,
+        "wires": [
+            [
+                "2f9e1a5513f29be9"
+            ]
+        ]
+    },
+    {
+        "id": "2f9e1a5513f29be9",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Lights mode: Morning",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.lights_mode",
+        "data": "{\"option\": \"morning\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1120,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac9fe23236bf161d",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Bedroom",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.bedroom_morning",
+        "data": "{\"transition\":60}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 650,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c46594e31d6927c",
+        "type": "comment",
+        "z": "0d3d2868f32e10d5",
+        "name": "Evening",
+        "info": "",
+        "x": 340,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "63fcc9aefafd9c8d",
+        "type": "link out",
+        "z": "0d3d2868f32e10d5",
+        "name": "Evening ",
+        "links": [
+            "fde3aa3c25bb26ac"
+        ],
+        "x": 1015,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "fde3aa3c25bb26ac",
+        "type": "link in",
+        "z": "0d3d2868f32e10d5",
+        "name": "Evening scenes",
+        "links": [
+            "63fcc9aefafd9c8d"
+        ],
+        "x": 435,
+        "y": 1660,
+        "wires": [
+            [
+                "74313c6fd6509fdd",
+                "2982a4f5623250ad",
+                "38b6da18d54fc655"
+            ]
+        ]
+    },
+    {
+        "id": "74313c6fd6509fdd",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Bedroom evening",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.bedroom_evening",
+        "data": "{\"transition\":15}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 710,
+        "y": 1660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2982a4f5623250ad",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Living room",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.living_room_evening",
+        "data": "{\"transition\":15}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 690,
+        "y": 1620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e8c884c2f954d840",
+        "type": "link out",
+        "z": "0d3d2868f32e10d5",
+        "name": "Bedtime",
+        "links": [
+            "b2dfe7d1f0076748"
+        ],
+        "x": 1015,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "f44b8668dc518eaa",
+        "type": "link out",
+        "z": "0d3d2868f32e10d5",
+        "name": "Night",
+        "links": [
+            "73d484e2373bd983"
+        ],
+        "x": 1015,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "784c47322dfe81e4",
+        "type": "comment",
+        "z": "0d3d2868f32e10d5",
+        "name": "Night",
+        "info": "",
+        "x": 350,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "73d484e2373bd983",
+        "type": "link in",
+        "z": "0d3d2868f32e10d5",
+        "name": "Night scenes",
+        "links": [
+            "f44b8668dc518eaa"
+        ],
+        "x": 435,
+        "y": 2140,
+        "wires": [
+            [
+                "f639d3104bcb1de9",
+                "352406d9cb239685",
+                "08c7cfdff4d5f9ae",
+                "2ccfb592df9454de"
+            ]
+        ]
+    },
+    {
+        "id": "f639d3104bcb1de9",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Bedroom off",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.bedroom_off",
+        "data": "{\"transition\":120}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 700,
+        "y": 2120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "352406d9cb239685",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Living room off",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.living_room_off",
+        "data": "{\"transition\":60}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 700,
+        "y": 2080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f943b5509eb4734f",
+        "type": "comment",
+        "z": "0d3d2868f32e10d5",
+        "name": "Bedtime",
+        "info": "",
+        "x": 340,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "c952c9e3b5eb046e",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Bedroom bedtime",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.bedroom_bedtime",
+        "data": "{\"transition\":15}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 690,
+        "y": 1920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2dfe7d1f0076748",
+        "type": "link in",
+        "z": "0d3d2868f32e10d5",
+        "name": "Bedtime scenes",
+        "links": [
+            "e8c884c2f954d840"
+        ],
+        "x": 435,
+        "y": 1920,
+        "wires": [
+            [
+                "c952c9e3b5eb046e",
+                "4f43cffa4658648b",
+                "91dbc183e5167fd9"
+            ]
+        ]
+    },
+    {
+        "id": "4f43cffa4658648b",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Living room",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.living_room_bedtime",
+        "data": "{\"transition\":60}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 1880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ff4d998e5c30fbe",
+        "type": "comment",
+        "z": "0d3d2868f32e10d5",
+        "name": "Day",
+        "info": "",
+        "x": 350,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "fdfea1107d624103",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Bedroom",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.bedroom_off",
+        "data": "{\"transition\":15}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e33ea0dadcffcc4",
+        "type": "link in",
+        "z": "0d3d2868f32e10d5",
+        "name": "Day scenes",
+        "links": [
+            "806f875d4aeb551d"
+        ],
+        "x": 455,
+        "y": 1480,
+        "wires": [
+            [
+                "fdfea1107d624103",
+                "8c591c90ac470930",
+                "d7b1b4b6dc4c339a"
+            ]
+        ]
+    },
+    {
+        "id": "99b3fd41ba3e90f8",
+        "type": "inject",
+        "z": "0d3d2868f32e10d5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 800,
+        "y": 820,
+        "wires": [
+            [
+                "f44b8668dc518eaa"
+            ]
+        ]
+    },
+    {
+        "id": "711179c401ad8842",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Living room",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.living_room_morning",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 650,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c591c90ac470930",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Living room",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.living_room_off",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 1480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "08c7cfdff4d5f9ae",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Office off",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.office_off",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 690,
+        "y": 2160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6357ba96dc2d55c",
+        "type": "eztimer",
+        "z": "0d3d2868f32e10d5",
+        "name": "",
+        "debug": false,
+        "autoname": "goldenHour",
+        "tag": "eztimer",
+        "topic": "",
+        "suspended": false,
+        "sendEventsOnSuspend": false,
+        "latLongSource": "haZone",
+        "latLongHaZone": "zone.home",
+        "lat": "55.75938101407778",
+        "lon": "12.405295819044115",
+        "timerType": "2",
+        "startupMessage": false,
+        "ontype": "1",
+        "ontimesun": "goldenHour",
+        "ontimetod": "17:00",
+        "onpropertytype": "msg",
+        "onproperty": "payload",
+        "onvaluetype": "num",
+        "onvalue": 1,
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "onsuppressrepeats": false,
+        "offtype": "1",
+        "offtimesun": "dusk",
+        "offtimetod": "dusk",
+        "offduration": "00:01:00",
+        "offpropertytype": "msg",
+        "offproperty": "payload",
+        "offvaluetype": "num",
+        "offvalue": 0,
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "offsuppressrepeats": false,
+        "resend": false,
+        "resendInterval": "0s",
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 1250,
+        "y": 1280,
+        "wires": [
+            [
+                "5d103d3f9fb35f09"
+            ]
+        ]
+    },
+    {
+        "id": "5d103d3f9fb35f09",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Lights mode: Evening",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.lights_mode",
+        "data": "{\"option\": \"evening\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1560,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "43bdda6ae9cc801e",
+        "type": "comment",
+        "z": "0d3d2868f32e10d5",
+        "name": "Morning alarm",
+        "info": "",
+        "x": 350,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "d7b1b4b6dc4c339a",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Hallway (off)",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.hallway_off",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 1520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fff4fb22117c1069",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Hallway (dimmed)",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.hallway_dimmed",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38b6da18d54fc655",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Hallway (dimmed)",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.hallway_dimmed",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 710,
+        "y": 1700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91dbc183e5167fd9",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Hallway (on)",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.hallway_on",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 1960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ccfb592df9454de",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Hallway (off)",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.hallway_off",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 700,
+        "y": 2200,
+        "wires": [
+            []
         ]
     }
 ]

@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "node-red-contrib-eztimer": "~1.2.7",
         "node-red-contrib-home-assistant-websocket": "~0.33.1"
     }
 }
