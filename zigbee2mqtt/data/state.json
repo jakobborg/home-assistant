@@ -2,10 +2,10 @@
     "0x00158d00024dec98": {
         "voltage": 3005,
         "battery": 100,
-        "illuminance": 507,
-        "illuminance_lux": 507,
+        "illuminance": 393,
+        "illuminance_lux": 393,
         "temperature": 30,
-        "occupancy": true,
+        "occupancy": false,
         "device_temperature": 30,
         "linkquality": 255,
         "power_outage_count": 32
@@ -13,8 +13,8 @@
     "0x00158d0002760af1": {
         "voltage": 3015,
         "battery": 100,
-        "illuminance": 79,
-        "illuminance_lux": 79,
+        "illuminance": 117,
+        "illuminance_lux": 117,
         "temperature": 24,
         "occupancy": false,
         "device_temperature": 27,
