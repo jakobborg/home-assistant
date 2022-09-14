@@ -22,3 +22,5 @@ devices:
     friendly_name: wardrobe_motion_sensor
 advanced:
   log_level: info
+  last_seen: ISO_8601_local
+
