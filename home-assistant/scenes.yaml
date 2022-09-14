@@ -992,45 +992,58 @@
     light.office_light:
       min_mireds: 153
       max_mireds: 454
+      effect_list:
+      - None
+      - candle
       supported_color_modes:
       - color_temp
+      mode: normal
+      dynamics: none
+      friendly_name: Office light
+      supported_features: 44
       color_mode: color_temp
       brightness: 255
-      color_temp: 398
+      color_temp: 350
       hs_color:
-      - 28.843
-      - 72.089
+      - 28.077
+      - 60.925
       rgb_color:
       - 255
-      - 159
-      - 71
+      - 172
+      - 99
       xy_color:
-      - 0.546
-      - 0.389
-      friendly_name: Office light
-      supported_features: 43
+      - 0.51
+      - 0.386
+      effect: None
       state: 'on'
     light.office_desk_light:
       min_mireds: 153
       max_mireds: 454
+      effect_list:
+      - None
+      - candle
       supported_color_modes:
       - color_temp
+      mode: normal
+      dynamics: none
+      friendly_name: Office desk light
+      supported_features: 44
       color_mode: color_temp
       brightness: 255
-      color_temp: 454
+      color_temp: 375
       hs_color:
-      - 29.79
-      - 84.553
+      - 28.47
+      - 66.821
       rgb_color:
       - 255
-      - 146
-      - 39
+      - 165
+      - 84
       xy_color:
-      - 0.579
+      - 0.53
       - 0.388
-      friendly_name: Office desk light
-      supported_features: 43
+      effect: None
       state: 'on'
+  metadata: {}
 - id: '1635439266721'
   name: living_room_cozy
   entities:
@@ -1307,3 +1320,61 @@
       friendly_name: Office desk light
       supported_features: 43
       state: 'off'
+- id: '1663144898031'
+  name: office_evening
+  entities:
+    light.office_light:
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - color_temp
+      mode: normal
+      dynamics: none
+      friendly_name: Office light
+      supported_features: 44
+      color_mode: color_temp
+      brightness: 51
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      effect: None
+      state: 'on'
+    light.office_desk_light:
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - None
+      - candle
+      supported_color_modes:
+      - color_temp
+      mode: normal
+      dynamics: none
+      friendly_name: Office desk light
+      supported_features: 44
+      color_mode: color_temp
+      brightness: 128
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      effect: None
+      state: 'on'
+  metadata: {}

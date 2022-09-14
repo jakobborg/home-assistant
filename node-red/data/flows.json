@@ -1164,7 +1164,8 @@
         "y": 980,
         "wires": [
             [
-                "2f9e1a5513f29be9"
+                "2f9e1a5513f29be9",
+                "79528f1ed143fe1a"
             ]
         ]
     },
@@ -1670,7 +1671,7 @@
         "sat": true,
         "sun": true,
         "x": 1250,
-        "y": 1280,
+        "y": 1240,
         "wires": [
             [
                 "5d103d3f9fb35f09"
@@ -1694,8 +1695,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1560,
-        "y": 1360,
+        "x": 1520,
+        "y": 1240,
         "wires": [
             []
         ]
@@ -1972,6 +1973,107 @@
             [
                 "dcb0576538cbf160"
             ]
+        ]
+    },
+    {
+        "id": "79528f1ed143fe1a",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Start radio",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "script",
+        "service": "turn_on",
+        "entityId": "script.play_radio",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1090,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c33e72b69435d681",
+        "type": "eztimer",
+        "z": "0d3d2868f32e10d5",
+        "name": "17:00",
+        "debug": false,
+        "autoname": "17:00:00",
+        "tag": "eztimer",
+        "topic": "",
+        "suspended": false,
+        "sendEventsOnSuspend": false,
+        "latLongSource": "haZone",
+        "latLongHaZone": "zone.home",
+        "lat": "55.75938101407778",
+        "lon": "12.405295819044115",
+        "timerType": "2",
+        "startupMessage": false,
+        "ontype": "2",
+        "ontimesun": "dawn",
+        "ontimetod": "17:00:00",
+        "onpropertytype": "msg",
+        "onproperty": "payload",
+        "onvaluetype": "num",
+        "onvalue": 1,
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "onsuppressrepeats": false,
+        "offtype": "1",
+        "offtimesun": "dusk",
+        "offtimetod": "dusk",
+        "offduration": "00:01:00",
+        "offpropertytype": "msg",
+        "offproperty": "payload",
+        "offvaluetype": "num",
+        "offvalue": 0,
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "offsuppressrepeats": false,
+        "resend": false,
+        "resendInterval": "0s",
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": false,
+        "sun": false,
+        "x": 1230,
+        "y": 1320,
+        "wires": [
+            [
+                "5e0b92d4981a5561"
+            ]
+        ]
+    },
+    {
+        "id": "5e0b92d4981a5561",
+        "type": "api-call-service",
+        "z": "0d3d2868f32e10d5",
+        "name": "Scene: Office off",
+        "server": "fe392a52c083df8f",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "scene",
+        "service": "turn_on",
+        "entityId": "scene.office_evening",
+        "data": "{\"transition\":30}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1500,
+        "y": 1320,
+        "wires": [
+            []
         ]
     },
     {
