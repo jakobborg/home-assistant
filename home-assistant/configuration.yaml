@@ -4,8 +4,16 @@ homeassistant:
   customize: !include customize.yaml
   media_dirs:
     local: /local-media
+  external_url: "https://ha.jkbb.dk"
+  internal_url: "http://ha-local.borg.cc:8123"
+  country: DK
 
 default_config:
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+  - 172.17.0.0/24
 
 logger:
   default: info
@@ -14,6 +22,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+sensor: !include sensors.yaml
 
 input_boolean: 
   guests:
@@ -25,10 +34,13 @@ input_boolean:
     icon: mdi:tools
     initial: off
   morning_alarm:
-    name: Morning Alarm
+    name: Morning alarm
     initial: on
   vacation:
     name: Vacation
+    initial: off
+  winter_lights:
+    name: Winter lights
     initial: off
 
 input_select:
@@ -41,11 +53,21 @@ input_select:
     - DR P4
     - DR P6 Beat
 
+binary_sensor:
+- platform: ping
+  name: Router
+  host: 192.168.0.1
+  scan_interval: 30
+- platform: ping
+  name: Google DNS
+  host: 8.8.8.8
+  scan_interval: 30
+
 # Resources
 
 lovelace:
   resources:
-  - url: /local/mini-media-player-bundle.js?v=1.11.0
+  - url: /local/mini-media-player-bundle.js?v=1.16.5
     type: module
   - url: /local/slider-entity-row.js
     type: module

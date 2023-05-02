@@ -1,1 +1,14 @@
-[]
+- id: '1677421012910'
+  alias: Caroline leaving Garbogaard
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.caroline
+    zone: zone.garbogaard
+    event: leave
+  condition: []
+  action:
+  - service: notify.mobile_app_jakob_phone
+    data:
+      title: Caroline left Garbogaard!
+  mode: single

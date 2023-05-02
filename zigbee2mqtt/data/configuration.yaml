@@ -1,5 +1,4 @@
 homeassistant: true
-# permit_join: true
 mqtt:
   base_topic: zigbee2mqtt
   server: mqtt://localhost
@@ -9,9 +8,11 @@ frontend:
   port: 8080
 devices:
   '0x00158d00024dec98':
-    friendly_name: hallway_motion_sensor
+    friendly_name: motion_sensor_01
+    description: Fordelingsgang
   '0x00158d0002760af1':
-    friendly_name: entrance_motion_sensor
+    friendly_name: motion_sensor_02
+    description: Entré
   '0x00158d000249f36f':
     friendly_name: guestroom_environment_sensor
   '0x00158d0002300b42':
@@ -23,4 +24,3 @@ devices:
 advanced:
   log_level: info
   last_seen: ISO_8601_local
-

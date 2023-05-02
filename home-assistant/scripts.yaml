@@ -3,7 +3,7 @@ play_radio:
   - service: media_player.volume_set
     data:
       entity_id: media_player.stereo
-      volume_level: 0.25
+      volume_level: 0.50
   - service: media_player.play_media
     data_template:
       entity_id: media_player.stereo
