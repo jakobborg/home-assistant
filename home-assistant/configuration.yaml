@@ -53,16 +53,6 @@ input_select:
     - DR P4
     - DR P6 Beat
 
-binary_sensor:
-- platform: ping
-  name: Router
-  host: 192.168.0.1
-  scan_interval: 30
-- platform: ping
-  name: Google DNS
-  host: 8.8.8.8
-  scan_interval: 30
-
 # Resources
 
 lovelace:

@@ -17,10 +17,10 @@ devices:
     friendly_name: guestroom_environment_sensor
   '0x00158d0002300b42':
     friendly_name: hallway_environment_sensor
-  '0x00158d0002302711':
-    friendly_name: bedroom_environment_sensor
   '0x14b457fffe7c2f46':
     friendly_name: wardrobe_motion_sensor
+  '0x00158d0002302711':
+    friendly_name: bedroom_environment_sensor
 advanced:
   log_level: info
   last_seen: ISO_8601_local
